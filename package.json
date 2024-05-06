@@ -1,0 +1,20 @@
+{
+  "name": "node-repl-polyfill",
+  "version": "0.1.0",
+  "description": "node:repl polyfill for other JS runtimes",
+  "main": "index.js",
+  "keywords": [
+    "repl",
+    "polyfill"
+  ],
+  "author": "CanadaHonk",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CanadaHonk/node-repl-polyfill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CanadaHonk/node-repl-polyfill/issues"
+  }
+}
