@@ -78,7 +78,7 @@ class REPLServer extends Interface {
     });
 
     this.on('line', cmd => {
-      const done = (err, ret) => {
+      const done = (function (err, ret) {
         // todo: remember cmd
 
         if (!err &&
@@ -91,7 +91,7 @@ class REPLServer extends Interface {
         }
 
         this.displayPrompt();
-      };
+      }).bind(this);
 
       cmd ??= '';
       lastSigint = false;
