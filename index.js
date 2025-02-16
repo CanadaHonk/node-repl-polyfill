@@ -53,8 +53,10 @@ class REPLServer extends Interface {
     // this does not support top-level await
     this.eval = options.eval ?? (async code => await eval(code));
 
-    this.commands = new Map();
-    // todo: default commands
+    this.commands = new Map(Object.entries({
+      exit: () => process.exit()
+      // todo: more default commands
+    }));
 
     this.on('close', () => {
       this.emit('exit');
@@ -102,7 +104,7 @@ class REPLServer extends Interface {
         trimmed[0] === '.' && trimmed[1] !== '.' && // ".foobar"
         isNaN(trimmed) // not a number like ".10"
       ) {
-        const command = trimmed.slice(0, trimmed.indexOf(' '));
+        const command = trimmed.slice(1, trimmed.indexOf(' '));
         if (this.commands.has(command)) {
           this.commands.get(command)(trimmed.slice(trimmed.indexOf(' ') + 2));
           return done();
