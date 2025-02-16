@@ -99,14 +99,14 @@ class REPLServer extends Interface {
       lastSigint = false;
 
       const trimmed = cmd.trim();
-
       if (trimmed &&
         trimmed[0] === '.' && trimmed[1] !== '.' && // ".foobar"
         isNaN(trimmed) // not a number like ".10"
       ) {
-        const command = trimmed.slice(1, trimmed.indexOf(' ') + 1);
+        const space = trimmed.indexOf(' ') ?? trimmed.length;
+        const command = trimmed.slice(1, trimmed.indexOf(' '));
         if (this.commands.has(command)) {
-          this.commands.get(command)(trimmed.slice(trimmed.indexOf(' ') + 2));
+          this.commands.get(command)(trimmed.slice(trimmed.indexOf(' ') + 1));
           return done();
         }
 
